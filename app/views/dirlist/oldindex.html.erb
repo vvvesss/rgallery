@@ -1,0 +1,59 @@
+<h1>RGallery Dirlist</h1>
+
+<div class="main">
+  <%= form_tag do %>
+    <fieldset>
+      <legend>Please Insert Directory to Browse</legend>
+        <div>
+          <%= label_tag :path, 'Path:' %>
+          <%= text_field_tag :path, params[:path] %>
+        </div>
+        <div>
+          <%= submit_tag "List" %> 
+        </div>
+    </fieldset>
+  <% end %>  
+  
+  <% if params[:path] %>
+
+    <div class="browser">
+
+      <div class="dirlist">
+	<table>
+          <th>Files and Dirs @ <%= params[:path]%></th>
+          <% @dirlist.each do |file| %>
+             <tr>
+               <% if File.directory?(file) %>
+                 <% next if file == "." %>
+                   <td class="dlist">
+                       <%= link_to "#{file}", :controller => "dirlist", :path => "#{params[:path]}/#{file}" %>
+                   </td>
+                 <% %>
+               <% else %>
+                 <td class="flist"><%= file %></td>
+               <% end %>
+             </tr>
+          <% end %>
+        </table>
+      </div>
+
+      <div class="imglist">
+	<table class="flist">
+          <th>Images @ <%= params[:path]%></th>
+          <% @imglist.each do |image| %>
+             <tr>
+               <td><%= image %></td>
+             </tr>
+          <% end %>
+        </table>
+      </div>
+
+    </div>
+  <% end %>
+
+  <% if notice %>
+    <p id="notice"><%= notice %></p> 
+  <% end %>
+</div>
+
+

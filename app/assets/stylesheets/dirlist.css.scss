@@ -1,0 +1,28 @@
+// Place all the styles related to the dirlist controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.dirlist {
+  .header{
+    font:bold smaller sans-serif;
+    font-size:14px;
+  }
+  .files {
+    font:smaller sans-serif;
+    font-size:12px;
+    background-color:#6495ed;
+    float:left;
+  }
+  .params {
+    font:smaller sans-serif;
+    font-size:12px;
+    float:left;
+    background-color:#e0ffff;
+  }
+  .notice {
+    clear:both;
+    background-color:#b0c4de;
+  }
+  .gal {
+    padding:10px;
+  }
+}

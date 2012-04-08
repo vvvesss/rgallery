@@ -1,0 +1,71 @@
+<h1>RGallery Dirlist</h1>
+
+<div>
+  <%= form_tag do |f| %>
+              <div class="files">
+                <table>
+                  <th colspan="3" class="header">Current Image Files in images/tmp</th>
+                     <tr>
+                         <td>
+                             Add to Gallery
+                         </td>
+                         <td>
+                             Image Filename
+                         </td>
+                         <td>
+                             GThumb
+                         </td>
+                     </tr>
+                  <% @imglist.each do |file| %>
+                     <tr>
+                         <td>
+                           <input type=checkbox name=files[] value='<%= file %>' checked="checked">
+                         </td>
+                         <td>
+                           <%= file %>
+                         </td>
+                         <td>
+                           <input type=checkbox name=thumb_files[] value='<%= file %>'>
+                         </td>
+                     </tr>
+                  <% end %>
+                </table>	
+              </div>
+              <div class="params">
+                <table>
+                  <tr class="header">
+                    <td>Title</td>
+                    <td>Category</td>
+                    <td>Description</td>
+                  </tr>
+                  <% @galleries.each do |gal| %>
+                    <tr>
+                      <td class="gal"><input type="radio" name="gal" value="<%= gal.id %>" /><%= gal.title %></td>
+                      <td class="gal"><%= gal.description %></td>
+                      <td class="gal"><%= gal.category %></td>
+                    </tr>
+                  <% end %>
+
+                </table>
+                <%= submit_tag "Add to Gallery" %> <input type=checkbox name=del value='del'> Delete Files from tmp directory after moving to gallery
+              </div>
+  <% end %>  
+<div class="notice">
+  <% if params[:files] %>
+    <% params[:files].each do |file| %>
+      <%= file %>
+    <% end %>
+  <% end %>
+  <% if params[:gal] %>
+    <%= params[:gal]%>
+  <% end %>
+  <% if notice %>
+    <p id="notice"><%= notice %></p> 
+  <% end %>
+  <% Gallery.find("1").images.each do |image| %>
+    <%= image.fname %>
+  <% end %>
+</div>
+</div>
+
+
