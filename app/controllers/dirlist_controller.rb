@@ -11,41 +11,50 @@ class DirlistController < ApplicationController
 	begin
           imgdir = "../#{Time.now.strftime("%Y%m%d")}"
           Dir.mkdir(imgdir) if ! File.directory?(imgdir)
-          Dir.mkdir("#{imgdir}/thumb") if ! File.directory?("#{imgdir}/thumb")
-          Dir.mkdir("#{imgdir}/gthumb") if ! File.directory?("#{imgdir}/gthumb")
+          Dir.mkdir("#{imgdir}/galery_thumb") if ! File.directory?("#{imgdir}/galery_thumb")
+          Dir.mkdir("#{imgdir}/image_thumb") if ! File.directory?("#{imgdir}/image_thumb")
+          Dir.mkdir("#{imgdir}/75x75") if ! File.directory?("#{imgdir}/75x75")
+          Dir.mkdir("#{imgdir}/originals") if ! File.directory?("#{imgdir}/originals")
           if !File.exists?("#{imgdir}/#{file}")
+          
+             /(.*)\.(jpg|png)/i.match(file)
+             iname = $1
+             iformat = $2
 
             #make gallery thumbs
-            #todo first resize then make effects!
-            if params[:thumb_files].include?(file) 
-		g_thumb = Magick::Image.read(file).first
-		cols, rows = g_thumb.columns, g_thumb.rows
-                thumb_title = @galleries.find(params[:gal]).title
-                
-                g_thumb[:caption] = thumb_title
-                sign = rand(1..2);
-                sign == 1 ? randint = "-#{rand(20)}" : randint = rand(20) 
-                g_thumb = g_thumb.polaroid(randint.to_i) { 
-                  self.gravity = Magick::CenterGravity 
-                  self.pointsize = 25
-                }
-                
+            g_thumb = Magick::Image.read(file).first
+            thumb_title = @galleries.find(params[:gal]).title
 
-                #g_thumb.change_geometry!("#{cols}x#{rows}") do |ncols, nrows, img|
-                #  img.resize!(ncols, nrows)
-                #end
-        	/(.*)\.(jpg|png)/i.match(file)
-                g_thumb.write("#{imgdir}/gthumb/#{$1}.png")
-            end
+            #create thumb image_thumb     
+            g_thumb.change_geometry!('300x200') { |cols, rows, img|
+              g_thumb.resize!(cols, rows)
+            }
+            g_thumb.write("#{imgdir}/image_thumb/#{iname}.#{iformat}")
             
-            #make thumbnail
-            imagick = Magick::Image.read(file).first
-            imagick.crop_resized!(75, 75, Magick::NorthGravity)
-            imagick.write("#{imgdir}/thumb/#{file}")            
+            #create thumb 75x75
+            g_thumb.crop_resized!(75, 75, Magick::NorthGravity)
+            g_thumb.write("#{imgdir}/75x75/#{iname}.#{iformat}")
+
+            if params[:thumb_files].include?(file) 
+              #create polaroid effect gallery thumbnail 
+              g_thumb = Magick::Image.read("#{imgdir}/image_thumb/#{iname}.#{iformat}").first
+              g_thumb[:caption] = thumb_title
+              sign = rand(1..2);
+              sign == 1 ? randint = "-#{rand(20)}" : randint = rand(20) 
+              g_thumb = g_thumb.polaroid(randint.to_i) { 
+                self.gravity = Magick::CenterGravity 
+                self.pointsize = 25
+              }
+
+
+              g_thumb.write("#{imgdir}/galery_thumb/#{iname}.png")
+            end  
+            
+
 
             #move and delete if needed image files
             file1 = File.open(file, "r")          
-            file2 = File.open("#{imgdir}/#{file}", "w")
+            file2 = File.open("#{imgdir}/originals/#{file}", "w")
             file1.each {|line| file2.puts(line)}
 
             File.unlink("#{@path}/#{file}") if params[:del] 
