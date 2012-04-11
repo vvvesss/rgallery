@@ -15,10 +15,17 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
+  
   <div class="field">
-    <%= f.label :category %><br />
-    <%= f.text_field :category %>
+    <%= f.label :category_id %><br />    
+    <select id="gallery_category_id" name="gallery[category_id]">
+      <% @categories.each do |category| %>
+        <% selected = 'selected="selected"' if @gallery.category_id == category.id %>
+        <option value="<%= category.id %>" <%= selected %> ><%= category.title %></option>
+      <% end %>
+    </select>
   </div>
+
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_field :description %>

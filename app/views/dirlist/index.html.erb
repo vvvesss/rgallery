@@ -35,14 +35,12 @@
                 <table>
                   <tr class="header">
                     <td>Title</td>
-                    <td>Category</td>
                     <td>Description</td>
                   </tr>
                   <% @galleries.each do |gal| %>
                     <tr>
                       <td class="gal"><input type="radio" name="gal" value="<%= gal.id %>" /><%= gal.title %></td>
                       <td class="gal"><%= gal.description %></td>
-                      <td class="gal"><%= gal.category %></td>
                     </tr>
                   <% end %>
 
@@ -61,9 +59,6 @@
   <% end %>
   <% if notice %>
     <p id="notice"><%= notice %></p> 
-  <% end %>
-  <% Gallery.find("1").images.each do |image| %>
-    <%= image.fname %>
   <% end %>
 </div>
 </div>

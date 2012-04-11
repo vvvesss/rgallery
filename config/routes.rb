@@ -1,4 +1,6 @@
 Rgallery::Application.routes.draw do
+  resources :categories
+
   resources :images
 
   resources :galleries

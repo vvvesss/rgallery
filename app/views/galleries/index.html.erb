@@ -3,22 +3,25 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Category</th>
     <th>Description</th>
-    <th></th>
+    <th>Category</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @galleries.each do |gallery| %>
-  <tr>
-    <td><%= gallery.title %></td>
-    <td><%= gallery.category %></td>
-    <td><%= gallery.description %></td>
-    <td><%= link_to 'Show', gallery %></td>
-    <td><%= link_to 'Edit', edit_gallery_path(gallery) %></td>
-    <td><%= link_to 'Destroy', gallery, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <%= form_tag("/gallerie", :method => "update_categoryid") do %>
+    <tr>
+      <td><%= gallery.title %></td>
+      <td><%= gallery.description %></td>
+      <td>
+          <%= Category.find(gallery.category_id).title %>
+      </td>
+      <td><%= link_to 'Show', gallery %></td>
+      <td><%= link_to 'Edit', edit_gallery_path(gallery) %></td>
+      <td><%= link_to 'Destroy', gallery, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
 <% end %>
 </table>
 

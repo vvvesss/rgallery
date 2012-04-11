@@ -1,5 +1,7 @@
 class Gallery < ActiveRecord::Base
-  validates :title, :description, :category, presence: true
+  validates :title, :description, presence: true
   validates :title, uniqueness: true
   has_many :images
+  belongs_to :categoy
 end
+

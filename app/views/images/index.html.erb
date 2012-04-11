@@ -1,27 +1,37 @@
 <h1>Listing images</h1>
 
-<table>
-  <tr>
-    <th>Fname</th>
-    <th>Description</th>
-    <th>Seentimes</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%#= form_tag(:controller => 'images',:action=>'destroy', :method => "destroy") do %>
+<%= form_tag(images_path, :method => "post") do %>
+  <table>
+    <tr>
+      <th>Fname</th>
+      <th>Description</th>
+      <th>Seentimes</th>
+      <th>Gallery</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<% @images.each do |image| %>
-  <tr>
-    <td><%= image.fname %></td>
-    <td><%= image.description %></td>
-    <td><%= image.seentimes %></td>
-    <td><%= link_to 'Show', image %></td>
-    <td><%= link_to 'Edit', edit_image_path(image) %></td>
-    <td><%= link_to 'Destroy', image, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <% @images.each do |image| %>
+    <tr>
+      <td><input type=checkbox name=imgs[] value='<%= image.id %>'></td>
+      <td><%= image.fname %></td>
+      <td><%= image.description %></td>
+      <td><%= image.seentimes %></td>
+      <td><%= image.gallery.title %></td>  <!-- same as Gallery.find(image.gallery_id).title -->
+            
+      <td><%= link_to 'Edit', edit_image_path(image) %></td>
+    </tr>
+  <% end %>
+  </table>
+  <%= submit_tag "Delete Images" %>
 <% end %>
-</table>
-
+<% if params[:imgs] %>
+  <% params[:imgs].each do |ss| %>
+    <%= ss %>
+  <% end %>
+<% end %>
 <br />
 
 <%= link_to 'New Image', new_image_path %>
