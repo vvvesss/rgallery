@@ -11,7 +11,38 @@
  *= require_self
  *= require_tree .
 */
-
+  .page_title {
+    text-align: center;
+  }
+  table.main, tr.main, td.main {
+    border-collapse:collapse;
+    margin:0 auto;
+    border:1px solid green;
+  }
+  .field {
+    text-align:center;
+  }
+  .actions {
+    text-align:center;    
+  }
+  .right {
+    text-align:right;
+  }
+  th.main {
+    background-color:green;
+    color:white;
+  }
+  .odd {
+    background-color: #ccffcc;
+    padding:10px;
+  }
+  .menu {
+    a:link {text-decoration:none;}
+    background-color: #f0f0f0;
+    text-align: center;
+    font:smaller sans-serif;
+    font-size:18px;
+  }
 #notice {
   color: #000 !important;
   border: 2px solid green;

@@ -1,17 +1,16 @@
-<h1>Listing categories</h1>
+<div class="page_title"><h1>Listing categories</h1>
 
-<table>
+<table class="main">
   <tr>
-    <th>Title</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th class="main">Title</th>
+    <th class="main" colspan = "2">Actions</th>
   </tr>
-
+<% ii = 0 %>
 <% @categories.each do |category| %>
-  <tr>
+  <% ii += 1 %>
+  <% ii%2 == 0 ? style = "class='odd'" : style = ' ' %>
+  <tr <%= style%> >
     <td><%= category.title %></td>
-    <td><%= link_to 'Show', category %></td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
     <td><%= link_to 'Destroy', category, confirm: 'Are you sure?', method: :delete %></td>
   </tr>

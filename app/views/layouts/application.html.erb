@@ -9,8 +9,12 @@
 <body class='<%= controller.controller_name %>'>
 
 <div class="menu">
-  <%= link_to "Galleries", galleries_path %>!
-  <%= link_to "Images", images_path %>!
+  <%= link_to "Add", dirlist_index_path %>
+  <%= link_to "Images", images_path %>
+  <%= link_to "Galleries", galleries_path %>
+  <%= link_to "Categories", categories_path %>
+  <%= link_to "Users", users_path %>
+  <%= link_to "Logout", logout_path %>
 </div>
 <%= yield %>
 

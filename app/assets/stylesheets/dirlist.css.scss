@@ -9,14 +9,7 @@
   .files {
     font:smaller sans-serif;
     font-size:12px;
-    background-color:#6495ed;
-    float:left;
-  }
-  .params {
-    font:smaller sans-serif;
-    font-size:12px;
-    float:left;
-    background-color:#e0ffff;
+    align: center;
   }
   .notice {
     clear:both;
@@ -25,10 +18,16 @@
   .gal {
     padding:10px;
   }
-  table, td, th {
+  table.main, tr.main, td.main {
+    border-collapse:collapse;
+    margin:0 auto;
     border:1px solid green;
+    align: center; 
   }
-  th {
+  .right {
+    text-align:right;
+  }
+  th.main {
     background-color:green;
     color:white;
   }

@@ -1,23 +1,25 @@
-<h1>Listing galleries</h1>
+<div class="page_title"><h1>Listing galleries</h1></div>
 
-<table>
+
+<table class="main">
   <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Category</th>
-    <th></th>
-    <th></th>
+    <th class="main">Title</th>
+    <th class="main">Description</th>
+    <th class="main">Category</th>
+    <th class="main"></th>
+    <th class="main"></th>
   </tr>
-
+<% ii = 0 %>
 <% @galleries.each do |gallery| %>
   <%= form_tag("/gallerie", :method => "update_categoryid") do %>
-    <tr>
+    <% ii += 1 %>
+    <% ii%2 == 0 ? style = "class='odd'" : style = ' ' %>
+    <tr <%= style %>>
       <td><%= gallery.title %></td>
       <td><%= gallery.description %></td>
       <td>
           <%= Category.find(gallery.category_id).title %>
       </td>
-      <td><%= link_to 'Show', gallery %></td>
       <td><%= link_to 'Edit', edit_gallery_path(gallery) %></td>
       <td><%= link_to 'Destroy', gallery, confirm: 'Are you sure?', method: :delete %></td>
     </tr>
@@ -27,4 +29,6 @@
 
 <br />
 
+<div class="actions">
 <%= link_to 'New Gallery', new_gallery_path %>
+</div>

@@ -1,31 +1,30 @@
-<h1>Listing images</h1>
+<div class="page_title"><h1>Listing images</h1></div>
 
 <%#= form_tag(:controller => 'images',:action=>'destroy', :method => "destroy") do %>
 <%= form_tag(images_path, :method => "post") do %>
-  <table>
-    <tr>
-      <th>Fname</th>
-      <th>Description</th>
-      <th>Seentimes</th>
-      <th>Gallery</th>
-      <th></th>
-      <th></th>
-      <th></th>
+  <table class="main">
+    <tr >
+      <th class="main">Action</th>
+      <th class="main">Fname</th>
+      <th class="main">Description</th>
+      <th class="main">Gallery</th>
+      <th class="main"></th>
     </tr>
-
+  <% ii = 0 %>
   <% @images.each do |image| %>
-    <tr>
+    <% ii += 1 %>
+    <% ii%2 == 0 ? style = "class='odd'" : style = ' ' %>
+    <tr <%= style %>>
       <td><input type=checkbox name=imgs[] value='<%= image.id %>'></td>
       <td><%= image.fname %></td>
       <td><%= image.description %></td>
-      <td><%= image.seentimes %></td>
       <td><%= image.gallery.title %></td>  <!-- same as Gallery.find(image.gallery_id).title -->
-            
       <td><%= link_to 'Edit', edit_image_path(image) %></td>
     </tr>
   <% end %>
+    <tr><td colspan="5"><%= submit_tag "Delete Images" %></td></tr>
   </table>
-  <%= submit_tag "Delete Images" %>
+
 <% end %>
 <% if params[:imgs] %>
   <% params[:imgs].each do |ss| %>
@@ -33,5 +32,3 @@
   <% end %>
 <% end %>
 <br />
-
-<%= link_to 'New Image', new_image_path %>

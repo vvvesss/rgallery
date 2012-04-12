@@ -1,4 +1,18 @@
 Rgallery::Application.routes.draw do
+
+  get "site/index"
+
+  get 'admin' => 'admin#index'
+  
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create 
+    get 'logout' => :destroy
+    #delete 'logout' => :destroy
+  end
+  
+  resources :users
+
   resources :categories
 
   resources :images
@@ -58,7 +72,7 @@ Rgallery::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
-
+root to: 'site#index', as: 'site'
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

@@ -11,7 +11,7 @@ class DirlistController < ApplicationController
 	begin
           imgdir = "../#{Time.now.strftime("%Y%m%d")}"
           Dir.mkdir(imgdir) if ! File.directory?(imgdir)
-          Dir.mkdir("#{imgdir}/galery_thumb") if ! File.directory?("#{imgdir}/galery_thumb")
+          Dir.mkdir("../galery_thumb") if ! File.directory?("../galery_thumb")
           Dir.mkdir("#{imgdir}/image_thumb") if ! File.directory?("#{imgdir}/image_thumb")
           Dir.mkdir("#{imgdir}/75x75") if ! File.directory?("#{imgdir}/75x75")
           Dir.mkdir("#{imgdir}/originals") if ! File.directory?("#{imgdir}/originals")
@@ -47,7 +47,7 @@ class DirlistController < ApplicationController
               }
 
 
-              g_thumb.write("#{imgdir}/galery_thumb/#{iname}.png")
+              g_thumb.write("../galery_thumb/#{iname}.png")
             end  
             
 
@@ -84,24 +84,5 @@ class DirlistController < ApplicationController
   end   
 
 
-
-=begin    
-    if params[:path]
-      if (File.directory?(params[:path]))
-	@pwd = Dir.pwd
-        Dir.chdir(params[:path]) 
-        @imglist = []
-        @imglist = Dir["*.{jpg,png}"]
-        @dirlist = []
-        @dirlist = Dir.entries(params[:path]).sort
-      else
-        respond_to do |format|
-          format.html { redirect_to dirlist_index_url, notice: "No such directory #{params[:path]}!" } 
-          format.json { head :no_content }
-        end
-      end
-    end
-  end
-=end
 
 end

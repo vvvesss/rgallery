@@ -43,6 +43,7 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
+  
     if params[:imgs]
       params[:imgs].each do |image|
          img = Image.find(image)
@@ -55,7 +56,7 @@ class ImagesController < ApplicationController
          File.unlink("#{@path}/#{img.path}/image_thumb/#{iname}.#{iformat}")
          File.unlink("#{@path}/#{img.path}/75x75/#{iname}.#{iformat}")
          if File.exists?("#{@path}/#{img.path}/galery_thumb/#{iname}.png")
-           File.unlink("#{@path}/#{img.path}/galery_thumb/#{iname}.png")
+           File.unlink("#{@path}/images/galery_thumb/#{iname}.png")
          end
          img.destroy
       end
@@ -82,11 +83,24 @@ class ImagesController < ApplicationController
   # PUT /images/1
   # PUT /images/1.json
   def update
-    @image = Image.find(params[:id])
+    @image = Image.find(params[:id])    
+    if @image.fname != params[:image]['fname']
+      /(.*)\.(jpg|png)/i.match(@image.fname)
+      iname = $1
+      iformat = $2    
+      paths = "originals", "75x75", "image_thumb"
+      paths.each do |subdir|
+        Dir.chdir("#{Rails.root}/#{@image.path}/#{subdir}")
+        file1 = File.open(@image.fname, "r")          
+        file2 = File.open(params[:image]['fname'], "w")
+        file1.each {|line| file2.puts(line)}
+        File.unlink(@image.fname)
+      end
 
+    end
     respond_to do |format|
       if @image.update_attributes(params[:image])
-        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
+        format.html { redirect_to @image, notice: "Image was #{params[:image]['fname']} successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
