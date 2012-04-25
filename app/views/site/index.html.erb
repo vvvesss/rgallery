@@ -1,12 +1,26 @@
-<% @gallery_thumbs.each do |g_thumb| %>
-<!--  <table>
-    <tr><td>Filename: <%= g_thumb.fname %></td>
-    <td>Path: <%= g_thumb.path %></td>
-    <td>Gallery: <%= g_thumb.gallery.title %></td>
-    <td>Category: <%= g_thumb.gallery.category.title %></td></tr>
-  </table>
--->
-<% end %>
+rows: <%= @row_number %> categories: <%= @categories_number %> <br>
+<%# @cat_thumbs.each do |key1, value| %>
+  <%# value.each do |key2, value2| %>
+    <%#= key1 %> <%#= key2 %> <%#= value2 %> <br>
+  <%# end %>
+<%# end %>
+<%= @table_rows %>
 <div class="categories">
-
+  <table id="cat_tab">
+    <% 1.upto(@row_number) do |row| %>
+      <tr>
+      <% 1.upto(3) do |col| %>
+        <td class="cat_tab">
+          <% if @cat_thumbs[col][row] != {} 
+            /(.*\.(jpg|png)):(\d+)/i.match(@cat_thumbs[col][row])
+            imgfile = $1
+            catid = $3
+          %>
+            <a href="/cshow/<%= catid %>"><img src="<%= imgfile %>" alt="category"/></a>
+          <% end %>
+        </td>
+      <% end %>
+      </tr>
+    <% end %>
+  </table>
 </div>

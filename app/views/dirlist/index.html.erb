@@ -23,8 +23,8 @@
            <tr <%= style %>>
                <td>
                  <input type=checkbox name=files[] value='<%= file %>' checked="checked">
-               </td>
-               <td>
+               </td>	
+               <td>	
                  <%= file %>
                </td>
                <td class="right">
@@ -42,15 +42,18 @@
                   <option value="<%= gallery.id %>" ><%= gallery.title %></option>
                 <% end %>
               </select>
-              <%= submit_tag "Add to Gallery" %> <input type=checkbox name=del value='del'> Delete Files from tmp
+              <%= submit_tag "Add to Gallery" %> 
+              <input type=checkbox name=del value="del"> Delete Files from tmp
+              <input type=hidden name=perpage value="<%=params[:perpage]%>">
             </td>
             <td>
-
+              Show <a href="/dirlist/index?perpage=10">10</a> | <a href="/dirlist/index?perpage=20">20</a>
             </td>
           </tr>
       </table>
     </div>
   <% end %>  
+  <div class="actions"><%= will_paginate @imglist %></div>
  <div class="notice">
    <% if params[:files] %>
      <% params[:files].each do |file| %>

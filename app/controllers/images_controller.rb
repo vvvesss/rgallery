@@ -4,9 +4,15 @@ class ImagesController < ApplicationController
   def index
 #    Image.delete_all
 #    Gallery.delete_all
-    @images = Image.all
-
-
+    #@images = Image.all
+    @perpage = 10
+    @perpage = params[:perpage].to_i if params[:perpage]
+    if params[:gal]
+      @images = Image.where(:gallery_id => params[:gal]).paginate page: params[:page], order: 'created_at desc', per_page: @perpage
+    else 
+      @images = Image.paginate page: params[:page], order: 'created_at desc', per_page: @perpage
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @images }

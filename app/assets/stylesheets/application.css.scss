@@ -14,11 +14,25 @@
   .page_title {
     text-align: center;
   }
+
+  a:link {text-decoration:none;}
+  a:visited {text-decoration:none;}
+  a:hover {text-decoration:none;}
+  a:active {text-decoration:none;}
+
   table.main, tr.main, td.main {
     border-collapse:collapse;
     margin:0 auto;
     border:1px solid green;
   }
+  td {
+    padding-left:10px;
+    padding-right:10px;
+  }
+  th {
+    background-color:green;
+    color:white;
+  }  
   .field {
     text-align:center;
   }
@@ -27,10 +41,6 @@
   }
   .right {
     text-align:right;
-  }
-  th.main {
-    background-color:green;
-    color:white;
   }
   .odd {
     background-color: #ccffcc;
@@ -43,6 +53,14 @@
     font:smaller sans-serif;
     font-size:18px;
   }
+  #left {
+    float:left;
+    width:200px;
+  }
+  #right {
+    float:left;
+    width:800px;
+  } 
 #notice {
   color: #000 !important;
   border: 2px solid green;

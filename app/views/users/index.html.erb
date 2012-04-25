@@ -5,12 +5,13 @@
 <table class="main">
   <tr>
     <th>Name</th>
-    <th></th>
-    <th></th>
+    <th colspan="2">Actions</th>
   </tr>
-
+<% ii = 0 %>
 <% @users.each do |user| %>
-  <tr>
+  <% ii += 1 %>
+  <% ii%2 == 0 ? style = "class='odd'" : style = ' ' %>
+  <tr <%= style %>>
     <td><%= user.name %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>

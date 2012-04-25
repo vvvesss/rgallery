@@ -6,9 +6,17 @@
   <%= javascript_include_tag "main" %>
   <%= csrf_meta_tags %>
 </head>
-<body class='<%= controller.controller_name %>' bgcolor="#111111">
+<body bgcolor="#111111">
+
+<div id="left-panel">
+  left panel here
+</div>
+<div id="right-panel">
+  right panel here 
+</div>
 
 <%= yield %>
+
 
 </body>
 </html>

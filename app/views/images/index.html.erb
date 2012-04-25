@@ -1,29 +1,47 @@
-<div class="page_title"><h1>Listing images</h1></div>
+ <div class="page_title"><h1>Listing images</h1></div>
 
 <%#= form_tag(:controller => 'images',:action=>'destroy', :method => "destroy") do %>
 <%= form_tag(images_path, :method => "post") do %>
   <table class="main">
     <tr >
-      <th class="main">Action</th>
-      <th class="main">Fname</th>
-      <th class="main">Description</th>
-      <th class="main">Gallery</th>
-      <th class="main"></th>
+      <th></th>
+      <th>Thumb</th>
+      <th>Fname</th>
+      <th>Gallery</th>
+      <th>Category</th>      
+      <th colspan="2"></th>
     </tr>
   <% ii = 0 %>
   <% @images.each do |image| %>
     <% ii += 1 %>
     <% ii%2 == 0 ? style = "class='odd'" : style = ' ' %>
+    <% img = "../#{image.path}/75x75/#{image.fname}"%>
     <tr <%= style %>>
-      <td><input type=checkbox name=imgs[] value='<%= image.id %>'></td>
+      <td class="tablecells"><input type=checkbox name=imgs[] value='<%= image.id %>'></td>
+      <td><a href="/images/<%=image.id%>"><img src="<%= img %>" alt="<%= image.fname %>" width="75" height="75"/></a></td>
       <td><%= image.fname %></td>
-      <td><%= image.description %></td>
       <td><%= image.gallery.title %></td>  <!-- same as Gallery.find(image.gallery_id).title -->
+      <td><%= image.gallery.category.title %></td>
       <td><%= link_to 'Edit', edit_image_path(image) %></td>
     </tr>
   <% end %>
-    <tr><td colspan="5"><%= submit_tag "Delete Images" %></td></tr>
+    <% perpage_params = "perpage=#{params[:perpage]}&" if params[:perpage]%>
+    <tr>
+      <td colspan="2"><%= submit_tag "Delete Images" %></td>
+      <td colspan="2"><FORM NAME="galleries">
+            <SELECT NAME="select" ONCHANGE="goto(this.form)" SIZE="1">
+            <OPTION VALUE="">-------Choose Gallery-------
+            <% Gallery.all.each do |gallery_row| %>
+               <OPTION VALUE="/images?<%= perpage_params%>gal=<%=gallery_row.id%>"> <%=gallery_row.title%>
+            <% end %>
+          </FORM>
+      </td>
+      <% gallery_params = "gal=#{params[:gal]}&" if params[:gal]%>
+      <td colspan="2">Show <a href="/images?<%=gallery_params%>perpage=10">10</a> | <a href="/images?<%=gallery_params%>perpage=20">20</a> | <a href="/images?<%=gallery_params%>perpage=50">50</a> | <a href="/images?<%=gallery_params%>perpage=100">100</a></td>
+    </tr>
   </table>
+
+<div class="actions"><%= will_paginate @images %></div>
 
 <% end %>
 <% if params[:imgs] %>

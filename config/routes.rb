@@ -1,7 +1,7 @@
 Rgallery::Application.routes.draw do
 
   get "site/index"
-
+  
   get 'admin' => 'admin#index'
   
   controller :sessions do
@@ -11,6 +11,10 @@ Rgallery::Application.routes.draw do
     #delete 'logout' => :destroy
   end
   
+  resources :gshow
+  
+  resources :cshow 
+
   resources :users
 
   resources :categories
@@ -20,7 +24,11 @@ Rgallery::Application.routes.draw do
   resources :galleries
 
   get "dirlist/index"
+
   post "dirlist/index"
+
+  post "gshow/:id" => "gshow#show"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

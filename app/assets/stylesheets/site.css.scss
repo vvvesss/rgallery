@@ -1,9 +1,55 @@
 // Place all the styles related to the Site controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.categories {
-  background-color:#111111;
-}
-.cat_tab {
-  width:800;
-}
+
+  #global {
+    position:relative;
+  }
+  #cat_tab {
+    border-collapse:collapse;
+    margin:0 auto;
+  }
+  td.cat_tab {
+    padding-left:100px;
+    padding-right:100px;
+    padding-top:20px;
+    padding-bottom:20px;
+  }
+  #cshow {
+    margin:0 auto;
+  }
+  td.cshow {
+    padding-left:50px;
+    padding-right:50px;
+    padding-top:20px;
+    padding-bottom:20px;
+  }
+  td.gshow {
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:20px;
+    padding-bottom:20px;
+  }
+  .main {
+    text-align:center;
+    color:#ffffff;
+    background-color:#000000;
+    margin: 10px auto;
+    width: 90%;
+  }
+  #left-panel {
+    float:left;
+    width:200px;
+    height:700px;
+    background-color:#6495ed;
+    margin: 0;
+    width: 200;
+  }
+  #right-panel {
+   top:0;
+   float:right;
+   width:200px;
+   height:700px;
+   margin: 0;
+   background-color:#6495ed;
+  }

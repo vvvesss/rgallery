@@ -1,20 +1,37 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Fname:</b>
-  <%= @image.fname %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @image.description %>
-</p>
-
-<p>
-  <b>Seentimes:</b>
-  <%= @image.seentimes %>
-</p>
-
+<div class="page_title"><h1>Image <%= @image.fname %></h1></div>
+<% if (notice) %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+<div id="left">
+	<p>
+	  <b>Fname:</b>
+	  <%= @image.fname %>
+	</p>
+	
+	<p>
+	  <b>Description:</b>
+	  <%= @image.description %>
+	</p>
+	
+	<p>
+	  <b>Gallery:</b>
+	  <%= @image.gallery.title %>
+	</p>
+	
+	<p>
+	  <b>Category:</b>
+	  <%= @image.gallery.category.title %>
+	</p>
+	
+	<p>
+	  <b>Seentimes:</b>
+	  <%= @image.seentimes %>
+	</p>
+</div>
+<% img = "../#{@image.path}/originals/#{@image.fname}"%>
+<div id="right">
+	<img src="<%= img %>" alt="<%= @image.fname %>" width="800" />
+</div>
 
 <%= link_to 'Edit', edit_image_path(@image) %> |
 <%= link_to 'Back', images_path %>

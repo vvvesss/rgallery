@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+    <% img = "../../#{@image.path}/image_thumb/#{@image.fname}"%>
+  <div class="field">
+    <img src="<%= img %>" alt="<%= @image.fname %>" width="200" />
+  </div>
   <div class="field">
     <%= f.label :fname %><br />
     <%= f.text_field :fname %>
@@ -18,6 +21,15 @@
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :gallery %><br />
+    <select id="image_gallery_id" name="image[gallery_id]">
+      <% Gallery.all.each do |gallery| %>
+        <% selected = 'selected="selected"' if @image.gallery_id == gallery.id %>
+        <option value="<%= gallery.id %>" <%= selected %> ><%= gallery.title %></option>
+      <% end %>
+    </select>
   </div>
   <div class="field">
     <%= f.label :seentimes %><br />

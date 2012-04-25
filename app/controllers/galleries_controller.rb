@@ -4,6 +4,7 @@ class GalleriesController < ApplicationController
   def index
     @galleries = Gallery.all
 
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @galleries }
@@ -44,6 +45,7 @@ class GalleriesController < ApplicationController
   # POST /galleries.json
   def create
     @gallery = Gallery.new(params[:gallery])
+    @categories = Category.all
 
     respond_to do |format|
       if @gallery.save
