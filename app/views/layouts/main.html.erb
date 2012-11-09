@@ -3,18 +3,11 @@
 <head>
   <title>RGallery</title>
   <%= stylesheet_link_tag    "site", :media => "all" %>
-  <%= javascript_include_tag "main" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body bgcolor="#111111">
 
-<div id="left-panel">
-  left panel here
-</div>
-<div id="right-panel">
-  right panel here 
-</div>
-
+<body>
 <%= yield %>
 
 

@@ -1,0 +1,113 @@
+<!-- Image Show  Page -->
+<div class="main">
+<% if session[:perpage] 
+      ppg1 = session[:cols]*5
+      ppg2 = session[:cols]*10
+      ppg3 = session[:cols]*20
+   end %>
+    <div class="panel">
+    <div id="site_title"><img src="../aulele_gallery.png"></div>
+      <div id="home"><a href="<%= site_path %>"><img src="../home.png"></a></div>    
+    <!--
+        Show <a href="<%= request.url %><%= request.url['?'] ? '&' : '?' %>perpage=<%= ppg1 %>"><%= ppg1 %></a> | 
+             <a href="<%= request.url %><%= request.url['?'] ? '&' : '?' %>perpage=<%= ppg2 %>"><%= ppg2 %></a> | 
+             <a href="<%= request.url %><%= request.url['?'] ? '&' : '?' %>perpage=<%= ppg3 %>"><%= ppg3 %></a>
+    
+    
+        Cols <a href="<%= request.url %><%= request.url['?'] ? '&' : '?' %>cols=3">3</a> | 
+             <a href="<%= request.url %><%= request.url['?'] ? '&' : '?' %>cols=4">4</a> | 
+             <a href="<%= request.url %><%= request.url['?'] ? '&' : '?' %>cols=5">5</a> 
+    -->
+      <div id="perpage">
+        <table>
+          <tr>
+            <td id="ppg1">
+              <form name="ppg1" action="<%= request.url %>" method="post">
+                <input id="perpage" name="perpage" value="<%= ppg1 %>" type="hidden">
+                <input id="cols" name="cols" value="<%= session[:cols] %>" type="hidden">
+                <a href="#" onclick="document.forms['ppg1'].submit()"><img src="../<%= ppg1 %>.png"></a>
+              </form>
+            </td>    
+            <td rowspan="3"><img src="../pics.png"></td>
+          </tr>    
+          <tr>
+            <td id="ppg2">
+              <form name="ppg2" action="<%= request.url %>" method="post">
+                <input id="perpage" name="perpage" value="<%= ppg2 %>" type="hidden">
+                <input id="cols" name="cols" value="<%= session[:cols] %>" type="hidden">          
+                <a href="#" onclick="document.forms['ppg2'].submit()"><img src="../<%= ppg2 %>.png"></a>
+              </form>
+            </td>    
+          </tr> 
+          <tr>
+            <td id="ppg3">                    
+              <form name="ppg3" action="<%= request.url %>" method="post">
+                <input id="perpage" name="perpage" value="<%= ppg3 %>" type="hidden">
+                <input id="cols" name="cols" value="<%= session[:cols] %>" type="hidden">          
+                <a href="#" onclick="document.forms['ppg3'].submit()"><img src="../<%= ppg3 %>.png"></a>
+              </form>
+            </td>    
+          </tr>
+        </table>
+      </div>
+
+      <div id="cols">
+        <table id="colstab">
+          <tr>
+            <td id="col1">
+              <form name="col3form" action="<%= request.url %>" method="post">
+                <input id="cols" name="cols" value="3" type="hidden">
+                <a href="#" onclick="document.forms['col3form'].submit()"><img src="../3.png"></a>
+              </form>
+            </td>
+            <td id="col2">
+              <img src="../cols.png">
+              <form name="col4form" action="<%= request.url %>" method="post">
+                <input id="cols" name="cols" value="4" type="hidden">
+                <a href="#" onclick="document.forms['col4form'].submit()"><img src="../4.png"></a>
+              </form>
+            </td>
+            <td id="col3">                
+              <form name="col5form" action="<%= request.url %>" method="post">
+                <input id="cols" name="cols" value="5" type="hidden">
+                <a href="#" onclick="document.forms['col5form'].submit()"><img src="../5.png"></a>
+              </form>
+            </td>
+          </tr>
+        </table>
+      </div>        
+    
+    </div>
+
+    <table id="cshow">
+      <tr>
+        <% i = 1 %>
+        <% cell = 1 %>
+        <% 
+          allimg = @images.count          
+          allimg > session[:perpage] ? all = session[:perpage] : all = allimg
+          #cellnum = ((all/session[:cols]).to_i)*session[:cols]
+          cellnum = session[:perpage]
+          #cellnum =+ session[:cols] if allimg != 0
+        %>
+        <%#= "cellnum #{cellnum} column #{session[:cols]} allimg #{allimg} perpage #{session[:perpage]} all #{all} fff: #{@fff} sss: #{@sss} bbb: #{@bbb}"%>
+        <% @images.each do |img| %>
+          <% if i == (session[:cols]) + 1 %>
+      </tr>
+      <tr>
+            <% i = 1 %>
+          <% end %>
+          <td class="gshow"><a href="/ishow/<%= img.id %>"><img id="showimg" src="<%= "../#{img.path}/image_thumb/#{img.fname}" %>" alt="<%= img.fname %>"/></a></td>
+          <% i += 1 %>
+          <% cell += 1 %>
+        <% end %>
+        <% while cell <= cellnum %>
+          <td class="gshow"></td>
+          <% cell += 1 %>
+        <% end %>
+      </tr>
+    </table>
+  <div class="actions"><%= will_paginate @images %></div>
+
+</div>
+

@@ -4,9 +4,9 @@ require 'rails/all'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  #Bundler.require(*Rails.groups(:assets => %w(development test)))
   # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
+   Bundler.require(:default, :assets, Rails.env)
 end
 
 module Rgallery
@@ -38,6 +38,7 @@ module Rgallery
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    config.assets.precompile += ['site.css']
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -55,5 +56,24 @@ module Rgallery
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.action_mailer.smtp_settings = {
+        :address              => "mspa.bulsat.com",
+        :port                 => 25,
+        :domain               => "aulele.com",
+#        :user_name            => "v.yanev@bulsat.com",
+#        :password             => "(&@&!^",
+#        :authentication       => :plain,
+        :enable_starttls_auto => false
+    }
+                  
+    config.action_mailer.default_url_options = {
+        :host => "aulele.com"
+    }
+
+
+
+
   end
 end
+

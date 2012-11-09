@@ -1,0 +1,36 @@
+
+<%= form_for @message, :url => contact_path do |form| %>
+<div class = "cdiv">
+  <fieldset class="fields">
+    <div class="field">
+      <h1><%= form.label :name %></h1>
+      <%= form.text_field :name %>
+
+    </div>
+    
+    <div class="field">
+      <h1><%= form.label :email %></h1>
+      <%= form.text_field :email %>
+
+    </div>
+    <div class="field">
+      <h1><%= form.label :subject %></h1>
+      <%= form.text_field :subject %>
+
+    </div>
+    
+    <div class="field">
+
+      <%= form.text_area :body %>
+      <%= form.label :body %>
+    </div>
+  </fieldset>
+  
+  <fieldset class="actions">
+    <%= form.submit "Send" %>
+  </fieldset>
+</div>
+<% end %>
+
+
+

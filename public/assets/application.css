@@ -1,0 +1,79 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+*/
+  .page_title {
+    text-align: center;
+  }
+
+  a:link {text-decoration:none;}
+  a:visited {text-decoration:none;}
+  a:hover {text-decoration:none;}
+  a:active {text-decoration:none;}
+
+  table.main, tr.main, td.main {
+    border-collapse:collapse;
+    margin:0 auto;
+    border:1px solid green;
+  }
+  td {
+    padding-left:10px;
+    padding-right:10px;
+  }
+  th {
+    background-color:green;
+    color:white;
+  }  
+  .field {
+    text-align:center;
+  }
+  .actions {
+    text-align:center;    
+  }
+  .right {
+    text-align:right;
+  }
+  .odd {
+    background-color: #ccffcc;
+    padding:10px;
+  }
+  .menu {
+    a:link {text-decoration:none;}
+    background-color: #f0f0f0;
+    text-align: center;
+    font:smaller sans-serif;
+    font-size:18px;
+  }
+  #left {
+    float:left;
+    width:200px;
+  }
+  #right {
+    float:left;
+    width:800px;
+  } 
+#notice {
+  color: #000 !important;
+  border: 2px solid green;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+}
+#error {
+  color: #000 !important;
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+}

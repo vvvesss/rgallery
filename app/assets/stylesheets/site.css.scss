@@ -1,55 +1,221 @@
 // Place all the styles related to the Site controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+  body
+  {
+      background-color:#000000;
+//    background-image:url('../background.jpg');
+//    background-repeat:repeat-y;
+  }
   #global {
     position:relative;
   }
   #cat_tab {
-    border-collapse:collapse;
-    margin:0 auto;
+    text-align:center;
+//    border-collapse:collapse;
+    margin:0 auto auto auto;
+    //margin-bottom:100px;
+    //margin-right:50px;
+    //border: 1px solid white;
+    width: 1200px;
+  }
+  .main-site {
+    background-image:url('../background.jpg');
+    width: 1200px;
+    height: 1000px;
+    margin: 0px auto;
+   }
+  .main-tape {
+    background-image:url('../film.png');
+    background-repeat:no-repeat;
+    width: 627px;
+    height: 706px;
+    margin: 10px auto auto auto;
+  }
+  div#site_title {
+    margin-top: 40px;
+    margin-left: 20px;
+    position: absolute;
+   }
+  div#home {
+    margin-top: 80px;
+    margin-left: 20px;
+    position: absolute;
+   }   
+  .main {
+    background-image:url('../background.jpg');
+    background-repeat:repeat-y;
+//    background-image:url('../film.png');
+    //background-repeat:no-repeat;
+    height: 100%;
+    width: 1200px;
+    margin: 0 auto;
   }
   td.cat_tab {
-    padding-left:100px;
-    padding-right:100px;
-    padding-top:20px;
-    padding-bottom:20px;
+      width: 256px;
+//    padding-left:10px;
+//    padding-right:10px;
+//    padding-top:10px;
+//    padding-bottom:10px;
+//    border: 1px solid white;
   }
   #cshow {
-    margin:0 auto;
+    text-align: center; 
+    margin:10px 40px auto auto;
+    width: 1200px;
+    //border: 1px solid white;
   }
   td.cshow {
-    padding-left:50px;
-    padding-right:50px;
-    padding-top:20px;
-    padding-bottom:20px;
+  //  padding-left:10px;
+  //  padding-right:10px;
+  //  padding-top:10px;
+  //  padding-bottom:10px;
   }
   td.gshow {
-    padding-left:20px;
-    padding-right:20px;
-    padding-top:20px;
-    padding-bottom:20px;
-  }
-  .main {
+    //padding-left:10px;
+    //padding-right:10px;
+    //border: 1px solid #ffffff;
+    padding-top:10px;
+    padding-bottom:10px;
+    vertical-align:middle;
     text-align:center;
-    color:#ffffff;
-    background-color:#000000;
-    margin: 10px auto;
-    width: 90%;
   }
-  #left-panel {
-    float:left;
-    width:200px;
-    height:700px;
-    background-color:#6495ed;
-    margin: 0;
-    width: 200;
+  div#image{
+    text-align:center;
+//    background-color:#fff;
+    margin: 0px auto;
+    width: 1100px;
+    height: 600px;
   }
-  #right-panel {
-   top:0;
-   float:right;
-   width:200px;
-   height:700px;
-   margin: 0;
-   background-color:#6495ed;
+  table#image{
+    width: 900px;
+    margin: 0px auto;
+  }  
+  #thumbs {
+//    width: 30%;
+    text-align:center;
+    margin:50px auto auto auto;
   }
+  #tdcurrent {
+    padding: 5px;
+    background-color:green;
+  }
+  #tdthumbs {
+    padding: 5px;
+    background-color:#ffffff;
+  }
+  .panel {
+//    background-color:#ffffff;
+    // background-image:url('../headpanel.png');
+    width: 1200px;
+    height: 200px;
+    margin: 0px auto;
+  }
+  img#showimg {
+    border: 5px #fff solid;
+    margin: 0px 10px 0px 10px;
+  }
+/*  .img {
+    background-color:#ffffff;
+//    border:5px solid white;
+    padding: 3px;
+    margin: 0px auto;
+    display: inline-block;
+  }	*/
+  td#ppg1 {
+    padding-left:2px;
+  }
+  td#ppg2 {
+    padding-left:8px;
+  }
+  td#ppg3 {
+    padding-left:14px;
+  }  
+  div#perpage {
+    margin: 35px 70px;
+    float:right;    
+  }
+  div#cols {
+    margin: 70px;
+    float:right;   
+  }
+  table#colstab {
+    text-align: center;
+  }
+  td#col1 {
+    vertical-align:bottom;    
+  }
+  td#col2 {
+    vertical-align:top; 
+    padding-bottom: 15px;
+  }
+  td#col3 {
+    padding-top: 15px;
+    vertical-align:top;
+  }
+  a#test { 
+    font-weight: bold; 
+    font-size:18px;
+  }
+  ul#orderedlist {
+    font-size:18px;
+    color:white;
+  }
+  
+  div.sc_menu {
+  /* Set it so we could calculate the offsetLeft */
+  margin: 150px auto;
+  position: relative;
+  height: 100px;
+  width: 800px;
+  /* Add scroll-bars */
+  overflow: auto;
+//  background-color:#ffffff;
+}
+ul.sc_menu {
+  display: block;
+  height: 100px;
+  /* Max width here, for users without Javascript */
+  width: 1500px;
+  padding: 5px 0 0 5px;
+  /* Remove default margin */
+  margin: 0;
+  //background: url('navigation.png');
+  list-style: none;
+}
+.sc_menu li {
+  display: block;
+  float: left;
+  padding: 0 4px;
+}
+.sc_menu a {
+  display: block;
+  text-decoration: none;
+}
+.sc_menu span {
+  display: none;
+  margin-top: 3px;
+  text-align: center;
+  font-size: 12px;
+  color: #000;
+}
+.sc_menu a:hover span {
+  display: block;
+}
+.currentimg {
+  border: 2px red solid;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+
+.sc_menu img {
+  border: 3px #fff solid;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+
+.sc_menu a:hover img {
+  filter:alpha(opacity=50);
+  opacity: 0.5;
+}
+

@@ -10,6 +10,8 @@ Rgallery::Application.routes.draw do
     get 'logout' => :destroy
     #delete 'logout' => :destroy
   end
+
+  resources :ishow
   
   resources :gshow
   
@@ -29,6 +31,8 @@ Rgallery::Application.routes.draw do
 
   post "gshow/:id" => "gshow#show"
 
+  match 'contact' => 'contact#new', :as => 'contact', :via => :get
+  match 'contact' => 'contact#create', :as => 'contact', :via => :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
